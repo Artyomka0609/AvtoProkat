@@ -41,10 +41,10 @@ export function Footer(){
    <div className="col-12 col-sm-6 col-lg-4 footer-contacts"><div className="footer-contact-block">
     <h3 className="footer-title">На связи</h3>
     <ul className="footer-contact-list">
-     <li><span className="footer-emoji" aria-hidden="true">📞</span><a className="footer-phone" href={site.phoneHref}>{site.phone}</a></li>
-     <li><span className="footer-emoji" aria-hidden="true">✉️</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
      <li><span className="footer-emoji" aria-hidden="true">📍</span><a href={directions} target="_blank" rel="noopener noreferrer">{site.address}</a></li>
+     <li><span className="footer-emoji" aria-hidden="true">📞</span><a className="footer-phone" href={site.phoneHref}>{site.phone}</a></li>
      <li><span className="footer-emoji" aria-hidden="true">🕘</span><span>{site.hours}</span></li>
+     <li><span className="footer-emoji" aria-hidden="true">✉️</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
     </ul>
     <div className="socials">{site.socials.map(s=><a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"><span className="footer-emoji" aria-hidden="true">{s.name==='Telegram'?'📨':'💬'}</span>{s.name} ↗</a>)}</div>
    </div></div>
