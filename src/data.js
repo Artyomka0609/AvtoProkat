@@ -1,6 +1,6 @@
 export const site = {
   name: 'АвтоПрокат', tagline: 'Ваш маршрут. Ваша свобода.',
-  phone: '+7 (495) 000-00-00', phoneHref: 'tel:+74950000000', email: 'hello@avtoprokat.example',
+  phone: '+7 (495) 128-47-36', phoneHref: 'tel:+74951284736', email: 'hello@avtoprokat.example',
   address: 'Москва, ул. Тверская, 1', hours: 'Ежедневно, 09:00–21:00',
   coords: [55.75692, 37.61456], demo: true,
   // Замените контакты и социальные ссылки на данные компании перед запуском.

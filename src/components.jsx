@@ -4,11 +4,54 @@ import { Collapse } from 'bootstrap';
 import { cars, classes, gears, site, faqs } from './data';
 import { money, totalPrice, rentalDays, today, formatDate, validateBooking } from './utils';
 
-export function Icon({name='arrow',size=22,...props}) {const paths={arrow:<><path d="M5 19 19 5M5 5h14v14"/></>,shield:<><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></>,clock:<><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></>,pin:<><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></>,car:<><path d="m4 10 2-6h12l2 6M3 10h18v8H3zM6 18v3m12-3v3M6 14h2m8 0h2"/></>,users:<><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v2"/></>,gear:<><circle cx="12" cy="12" r="3"/><path d="m10 3 4 0 1 3 3 1 3 3v4l-3 1-1 3-3 3h-4l-1-3-3-1-3-3v-4l3-1 1-3z"/></>,phone:<path d="m6 3 4 5-3 3c2 3 3 4 6 6l3-3 5 4-2 3C10 22 2 13 3 5z"/>,check:<path d="m5 12 4 4L20 5"/>,mail:<><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></>,close:<path d="m6 6 12 12M6 18 18 6"/>,menu:<path d="M4 6h16M4 12h16M4 18h16"/>};return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]||paths.arrow}</svg>}
+export function Icon({name='arrow',size=22,...props}) {const paths={arrow:<><path d="M5 19 19 5M5 5h14v14"/></>,shield:<><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></>,clock:<><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></>,pin:<><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></>,car:<><path d="m4 10 2-6h12l2 6M3 10h18v8H3zM6 18v3m12-3v3M6 14h2m8 0h2"/></>,users:<><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v2"/></>,gear:<><circle cx="12" cy="12" r="3"/><path d="m10 3 4 0 1 3 3 1 3 3v4l-3 1-1 3-3 3h-4l-1-3-3-1-3-3v-4l3-1 1-3z"/></>,phone:<path d="m6 3 4 5-3 3c2 3 3 4 6 6l3-3 5 4-2 3C10 22 2 13 3 5z"/>,chevronUp:<path d="m6 15 6-6 6 6"/>,check:<path d="m5 12 4 4L20 5"/>,mail:<><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></>,close:<path d="m6 6 12 12M6 18 18 6"/>,menu:<path d="M4 6h16M4 12h16M4 18h16"/>};return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]||paths.arrow}</svg>}
 export const Photo=({name,...props})=><img src={`${import.meta.env.BASE_URL}images/${name}.jpg`} {...props}/>;
 export function Logo(){return <><span className="logo-symbol"><Icon name="car" size={23}/></span>Авто<span>Прокат</span></>}
-export function Header(){const [open,setOpen]=useState(false);const location=useLocation();useEffect(()=>setOpen(false),[location]);useEffect(()=>{const listener=e=>{if(e.key==='Escape')setOpen(false)};document.addEventListener('keydown',listener);return()=>document.removeEventListener('keydown',listener)},[]);return <><div className="topbar"><div className="container"><span><Icon name="pin" size={13}/> Москва · выдача в центре</span><span>Ежедневно, 09:00–21:00 <span className="topbar-dot">●</span></span></div></div><header className="header"><div className="container header__inner navbar navbar-expand-lg"><Link to="/" className="logo" aria-label="АвтоПрокат — главная"><Logo/></Link><button className="menu navbar-toggler" onClick={()=>setOpen(!open)} aria-label={open?'Закрыть меню':'Открыть меню'} aria-expanded={open} aria-controls="main-nav"><Icon name={open?'close':'menu'}/></button><nav className={open?'open':''} id="main-nav" aria-label="Основная навигация">{[['/','Главная'],['/catalog','Автомобили'],['/prices','Цены и условия'],['/contacts','О компании']].map(([to,label])=><NavLink end={to==='/'} to={to} key={to}>{label}</NavLink>)}</nav><a className="header__phone" href={site.phoneHref}><Icon name="phone" size={15}/> {site.phone}</a></div></header></>}
-export function Footer(){return <footer className="footer"><div className="container"><div className="row g-4 footer__top"><div className="col-12 col-lg-5"><Link to="/" className="logo"><Logo/></Link><p>Свобода передвижения начинается<br/>с правильного автомобиля.</p></div><div className="col-6 col-lg-3"><h3 className="footer-title">Ваш маршрут</h3><div className="footer-nav"><Link to="/catalog">Каталог автомобилей</Link><Link to="/prices">Цены и условия</Link><Link to="/contacts">О нас и контакты</Link></div></div><div className="col-6 col-lg-4"><h3 className="footer-title">На связи</h3><a className="footer-phone" href={site.phoneHref}>{site.phone}</a><p>{site.address}<br/>{site.hours}</p><div className="socials">{site.socials.map(s=><a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer">{s.name} ↗</a>)}</div></div></div><div className="footer__bottom"><span>© {new Date().getFullYear()} АвтоПрокат. Все права защищены.</span><Link to="/privacy">Конфиденциальность</Link><span className="protected"><Icon name="shield" size={16}/> все данные защищены</span></div></div></footer>}
+export function Header(){
+ const [open,setOpen]=useState(false);
+ const location=useLocation();
+ useEffect(()=>setOpen(false),[location]);
+ useEffect(()=>{const listener=e=>{if(e.key==='Escape')setOpen(false)};document.addEventListener('keydown',listener);return()=>document.removeEventListener('keydown',listener)},[]);
+ return <>
+  <div className="topbar"><div className="container"><span><Icon name="pin" size={13}/> Москва · выдача в центре</span><span>{site.hours} <span className="topbar-dot">●</span></span></div></div>
+  <header className="header"><div className="container header__inner navbar navbar-expand-lg">
+   <Link to="/" className="logo" aria-label="АвтоПрокат — главная"><Logo/></Link>
+   <nav className={open?'open':''} id="main-nav" aria-label="Основная навигация">{[['/','Главная'],['/catalog','Автомобили'],['/prices','Цены и условия'],['/contacts','О компании']].map(([to,label])=><NavLink end={to==='/'} to={to} key={to}>{label}</NavLink>)}</nav>
+   <div className="header-actions">
+    <a className="header__phone" href={site.phoneHref}><Icon name="phone" size={15}/> {site.phone}</a>
+    <Link className="btn header-rent" to="/#booking">Арендовать авто</Link>
+   </div>
+   <button className="menu navbar-toggler" onClick={()=>setOpen(!open)} aria-label={open?'Закрыть меню':'Открыть меню'} aria-expanded={open} aria-controls="main-nav"><Icon name={open?'close':'menu'}/></button>
+  </div></header>
+ </>
+}
+export function Footer(){
+ const directions=`https://yandex.ru/maps/?rtext=~${site.coords[0]},${site.coords[1]}&rtt=auto`;
+ return <footer className="footer"><div className="container">
+  <div className="row g-4 footer__top">
+   <div className="col-12 col-lg-4 footer-brand"><Link to="/" className="logo" aria-label="АвтоПрокат — главная"><Logo/></Link></div>
+   <div className="col-12 col-sm-6 col-lg-4 footer-route">
+    <h3 className="footer-title">Ваш маршрут</h3>
+    <div className="footer-nav">
+     <Link to="/catalog"><span className="footer-emoji" aria-hidden="true">🚘</span>Каталог автомобилей</Link>
+     <Link to="/prices"><span className="footer-emoji" aria-hidden="true">🏷️</span>Цены и условия</Link>
+     <Link to="/contacts"><span className="footer-emoji" aria-hidden="true">🏢</span>О нас и контакты</Link>
+    </div>
+   </div>
+   <div className="col-12 col-sm-6 col-lg-4 footer-contacts"><div className="footer-contact-block">
+    <h3 className="footer-title">На связи</h3>
+    <ul className="footer-contact-list">
+     <li><span className="footer-emoji" aria-hidden="true">📞</span><a className="footer-phone" href={site.phoneHref}>{site.phone}</a></li>
+     <li><span className="footer-emoji" aria-hidden="true">✉️</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
+     <li><span className="footer-emoji" aria-hidden="true">📍</span><a href={directions} target="_blank" rel="noopener noreferrer">{site.address}</a></li>
+     <li><span className="footer-emoji" aria-hidden="true">🕘</span><span>{site.hours}</span></li>
+    </ul>
+    <div className="socials">{site.socials.map(s=><a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"><span className="footer-emoji" aria-hidden="true">{s.name==='Telegram'?'📨':'💬'}</span>{s.name} ↗</a>)}</div>
+   </div></div>
+  </div>
+  <div className="footer__bottom"><span>© {new Date().getFullYear()} АвтоПрокат. Все права защищены.</span><Link to="/privacy">Конфиденциальность</Link><span className="protected"><Icon name="shield" size={16}/> все данные защищены</span></div>
+ </div></footer>
+}
 export function Eyebrow({children}){return <div className="eyebrow">{children}</div>}
 export function Intro({title,children,kicker='Свобода выбирать'}){return <div className="page-intro container"><div className="breadcrumb"><Link to="/">Главная</Link><span>/</span>{title}</div><Eyebrow>{kicker}</Eyebrow><h1>{title}</h1><p>{children}</p></div>}
 export function CTA(){return <div className="cta-band"><div><Eyebrow>От планов — к впечатлениям</Eyebrow><h3>Ваша следующая поездка начинается здесь</h3><p>Выберите автомобиль, который подходит именно вам.</p></div><Link className="btn btn--lime" to="/catalog">Выбрать автомобиль <Icon size={17}/></Link></div>}
