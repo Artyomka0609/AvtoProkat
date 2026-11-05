@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { cars } from '../src/data.js';
+import { totalPrice, rentalDays, validateBooking, dateNumber } from '../src/utils.js';
+const car=cars.find(c=>c.id==='toyota');
+test('discount boundaries agree with displayed day/week/month tariffs',()=>{assert.equal(totalPrice(car,1),4500);assert.equal(totalPrice(car,6),27000);assert.equal(totalPrice(car,7),28350);assert.equal(totalPrice(car,29),117450);assert.equal(totalPrice(car,30),108000)});
+test('rental periods use calendar days independently of DST',()=>{assert.equal(rentalDays('2027-03-27','2027-03-29'),2);assert.equal(rentalDays('2028-02-28','2028-03-01'),2);assert.ok(Number.isNaN(dateNumber('2027-02-29')))});
+const valid={car:'toyota',start:'2026-12-01',end:'2026-12-08',name:'Артём',phone:'+7 (999) 123-45-67'};
+test('valid booking is accepted',()=>assert.deepEqual(validateBooking(valid,cars,'2026-11-05'),{}));
+test('empty form identifies all required fields',()=>assert.deepEqual(Object.keys(validateBooking({car:'',start:'',end:'',name:'',phone:''},cars,'2026-11-05')),['car','start','end','name','phone']));
+test('rejects reversed, same-day, past and excessive periods',()=>{for(const end of ['2026-11-30','2026-12-01','2028-01-01'])assert.ok(validateBooking({...valid,end},cars,'2026-11-05').end);assert.ok(validateBooking({...valid,start:'2026-01-01'},cars,'2026-11-05').start)});
+test('rejects unsupported vehicle and malformed phone',()=>{assert.ok(validateBooking({...valid,car:'unknown'},cars).car);for(const phone of ['123','abc +7 999 123-45-67','+1 999 123 45 67'])assert.ok(validateBooking({...valid,phone},cars).phone)});
