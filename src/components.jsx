@@ -19,7 +19,7 @@ export function Header(){
    <nav className={open?'open':''} id="main-nav" aria-label="Основная навигация">{[['/','Главная'],['/catalog','Автомобили'],['/prices','Цены и условия'],['/contacts','О компании']].map(([to,label])=><NavLink end={to==='/'} to={to} key={to}>{label}</NavLink>)}</nav>
    <div className="header-actions">
     <a className="header__phone" href={site.phoneHref}><Icon name="phone" size={15}/> {site.phone}</a>
-    <Link className="btn header-rent" to="/#booking">Арендовать авто</Link>
+    <Link className="btn header-rent" to="/#booking">Выбрать автомобиль</Link>
    </div>
    <button className="menu navbar-toggler" onClick={()=>setOpen(!open)} aria-label={open?'Закрыть меню':'Открыть меню'} aria-expanded={open} aria-controls="main-nav"><Icon name={open?'close':'menu'}/></button>
   </div></header>
