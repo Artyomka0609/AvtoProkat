@@ -1,0 +1,89 @@
+.service-page { padding-top: 34px; padding-bottom: 60px; }
+.service-page h1 { margin: 34px 0 26px; font-size: clamp(32px, 4vw, 48px); }
+.service-page h2 { font-size: clamp(19px, 2.4vw, 26px); letter-spacing: -.7px; }
+.service-page h3 { font-size: 18px; }
+.service-nav, .catalog-tools, .card-tools, .tool-actions, .chip-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.service-nav { border-bottom: 1px solid var(--line); padding-bottom: 15px; }
+.service-nav a, .catalog-tools a { display:inline-flex; align-items:center; gap:8px; padding: 9px 14px; border-radius: 7px; font-size:13px; font-weight:700; }
+.service-nav a.active, .service-nav a:hover, .catalog-tools a:hover { background:#e3ebdb; color:var(--green); }
+.catalog-tools { margin:0 0 18px; }
+.catalog-tools a { border:1px solid var(--line); }
+.card-tools { margin:12px 0; justify-content:space-between; }
+.card-tools a, .compare-table a, .service-page .fine a { color:var(--green); text-decoration:underline; text-underline-offset:3px; }
+.card-tools a { font-size:12px; }
+.service-panel, .service-result, .rental-row, .service-car, .service-table-wrap { background:#fff; border:1px solid var(--line); border-radius:14px; }
+.service-panel, .result-body, .rental-row { padding:clamp(18px,3vw,32px); }
+.service-panel fieldset { min-width:0; }
+.service-panel legend { font-size:14px; font-weight:700; margin-bottom:12px; float:none; }
+.compare-controls { display:grid; grid-template-columns:minmax(0,1fr) 125px; gap:24px; align-items:start; }
+.service-page .field { font-size:12px; }
+.choice-chip, .check-line { display:inline-flex; align-items:center; gap:8px; font-size:13px; cursor:pointer; }
+.choice-chip { border:1px solid var(--line); padding:8px 12px; border-radius:20px; }
+.choice-chip:has(input:checked) { background:#eaf0e4; border-color:#92a78b; }
+.choice-chip input, .check-line input { width:16px; height:16px; flex:0 0 16px; accent-color:var(--green); }
+.service-table-wrap { margin-top:20px; overflow:auto; }
+.compare-table { width:100%; min-width:480px; border-collapse:collapse; }
+.compare-table td, .compare-table th { padding:13px 16px; font-size:13px; white-space:normal; min-width:135px; }
+.compare-table th:first-child { width:21%; }
+.compare-table thead th { vertical-align:bottom; }
+.compare-table thead img { width:100%; max-width:240px; height:88px; border-radius:6px; margin-bottom:8px; }
+.compare-table tbody tr:nth-last-child(2) { background:#eef4e8; font-weight:800; }
+.service-fields, .service-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.service-split { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; align-items:start; }
+.service-result, .service-car { overflow:hidden; }
+.trip-photo, .service-car>img { width:100%; height:clamp(160px,16vw,225px); object-fit:cover; }
+.service-car>div { padding:20px; }
+.service-car p, .service-page p { font-size:13px; line-height:1.7; }
+.service-car .btn { display:flex; margin-top:15px; }
+.tool-form { display:grid; gap:17px; }
+.tool-form h2 { margin-bottom:0; }
+.service-note { margin:18px 0; }
+.service-error { color:#9b2937; margin:12px 0; font-size:13px; }
+.trip-metrics { display:flex; flex-wrap:wrap; gap:15px 24px; margin:22px 0; }
+.trip-metrics dt, .date-pair small { color:var(--muted); font-size:12px; }
+.trip-metrics dd { margin:3px 0 0; font-size:20px; font-weight:800; }
+.trip-legs { padding-left:20px; margin-bottom:22px; font-size:13px; }
+.trip-legs li { padding:6px 0; }
+.trip-legs strong { margin-left:7px; }
+.calendar-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:24px 0 14px; }
+.calendar-head h2 { margin:0; text-transform:capitalize; }
+.month-button { border:1px solid var(--line); background:var(--paper); color:var(--green); border-radius:50%; width:38px; height:38px; font-size:22px; line-height:1; }
+.month-button:disabled { opacity:.35; }
+.calendar-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:5px; }
+.calendar-grid>b { text-align:center; font-size:11px; padding:5px 0; }
+.cal-day { border:1px solid transparent; border-radius:6px; min-height:38px; padding:0; color:var(--green); font-size:13px; background:#eaf1e4; }
+.cal-day.past { background:transparent; color:#929892; }
+.cal-day.busy { color:#783b2b; background:repeating-linear-gradient(135deg,#f4dfd8 0 4px,#f8e8e4 4px 8px); }
+.cal-day.range { background:#ccdfbb; }
+.cal-day[aria-pressed=true], .cal-day:not(:disabled):hover { background:var(--green); color:white; }
+.calendar-key, .date-pair, .calendar-summary { display:flex; gap:15px; flex-wrap:wrap; align-items:center; }
+.calendar-key { margin-top:15px; font-size:12px; }
+.date-pair { justify-content:space-between; margin:18px 0; }
+.date-pair>div>* { display:block; }
+.calendar-summary { border-top:1px solid var(--line); padding-top:15px; justify-content:space-between; }
+.account-group { margin:30px 0; }
+.account-group h2 small { font-size:14px; color:var(--muted); }
+.rental-row { margin:12px 0; }
+.rental-overview { display:flex; flex-wrap:wrap; align-items:center; gap:16px; }
+.rental-overview img { width:110px; height:74px; border-radius:8px; }
+.rental-overview h3, .rental-overview p { margin-bottom:5px; }
+.rental-overview .btn { margin-left:auto; }
+.extension-form { border-top:1px solid var(--line); margin-top:16px; padding-top:18px; }
+.extension-form .field { max-width:245px; margin-bottom:12px; }
+@media(max-width:900px) { .service-cards { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) {
+ .service-page { padding-top:20px; }
+ .service-nav { gap:5px; }
+ .service-nav a, .catalog-tools a { padding:8px; font-size:11px; }
+ .service-split, .service-fields, .service-cards, .compare-controls { grid-template-columns:1fr; }
+ .compare-controls .field { max-width:145px; }
+ .rental-overview .btn { margin-left:0; }
+ .service-page h1 { margin:22px 0; }
+ .service-panel, .result-body, .rental-row { padding:17px; }
+}
+
+.booking-calendar-link { display:inline-block; margin-top:12px; font-size:12px; color:var(--green); text-decoration:underline; }
+@media(min-width:992px) and (max-width:1199px) {
+  .header__inner { gap:10px; }
+  .header nav { gap:10px; }
+}
