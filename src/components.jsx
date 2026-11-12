@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useId } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Collapse } from 'bootstrap';
+import { ThemeToggle } from './ThemeToggle';
 import { createRental, storageMessage } from './rentalStore';
 import { cars, classes, gears, site, faqs } from './data';
 import { money, totalPrice, rentalDays, today, formatDate, validateBooking } from './utils';
@@ -22,6 +23,7 @@ export function Header(){
     <a className="header__phone" href={site.phoneHref}><Icon name="phone" size={15}/> {site.phone}</a>
     <Link className="btn header-rent" to="/#booking">Выбрать автомобиль</Link>
    </div>
+   <ThemeToggle/>
    <button className="menu navbar-toggler" onClick={()=>setOpen(!open)} aria-label={open?'Закрыть меню':'Открыть меню'} aria-expanded={open} aria-controls="main-nav"><Icon name={open?'close':'menu'}/></button>
   </div></header>
  </>

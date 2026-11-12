@@ -1,2 +1,21 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#204e3a"/><meta name="description" content="АвтоПрокат — аренда автомобилей для города, путешествий и деловых встреч. Выберите автомобиль, рассчитайте стоимость и заполните заявку."/><link rel="icon" type="image/svg+xml" href="./images/favicon.svg"/><title>АвтоПрокат — свобода в каждом маршруте</title></head><body><div id="root"></div><noscript>Включите JavaScript, чтобы открыть каталог автомобилей и форму бронирования.</noscript><script type="module" src="/src/main.jsx"></script></body></html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="theme-color" content="#204e3a"/>
+  <script>
+    // Set the palette before the first paint, including visits via a direct link.
+    let savedTheme;
+    try { savedTheme = localStorage.getItem('avtoprokat-theme'); } catch {}
+    const systemTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.bsTheme =
+      savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme;
+  </script>
+  <meta name="description" content="АвтоПрокат — аренда автомобилей для города, путешествий и деловых встреч. Выберите автомобиль, рассчитайте стоимость и заполните заявку."/>
+  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg"/>
+  <title>АвтоПрокат — свобода в каждом маршруте</title>
+</head>
+<body><div id="root"></div><noscript>Включите JavaScript, чтобы открыть каталог автомобилей и форму бронирования.</noscript><script type="module" src="/src/main.jsx"></script></body>
+</html>

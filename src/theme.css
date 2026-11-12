@@ -1,0 +1,117 @@
+.theme-toggle {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--green);
+}
+.theme-toggle:hover { border-color: currentColor; }
+.theme-toggle svg { width: 21px; height: 21px; }
+.theme-toggle svg g { transform-origin: 50% 50%; transition: opacity .24s, transform .32s; }
+.theme-sun, [data-bs-theme="dark"] .theme-moon { opacity: 0; transform: rotate(-55deg) scale(.55); }
+[data-bs-theme="dark"] .theme-sun { opacity: 1; transform: none; }
+
+@media (max-width: 991px) {
+  .header__inner { grid-template-columns: 1fr auto auto; }
+  .header .theme-toggle { grid-row: 1; grid-column: 2; width: 40px; height: 40px; }
+  .header .menu { grid-column: 3; }
+}
+
+/* Grow the new palette out from the button. The old snapshot remains opaque underneath. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+  ::view-transition-new(root) { animation: theme-reveal .48s cubic-bezier(.2,.7,.3,1) both; mix-blend-mode: normal; }
+  @keyframes theme-reveal {
+    from { clip-path: circle(0 at var(--theme-origin-x) var(--theme-origin-y)); }
+    to { clip-path: circle(150vmax at var(--theme-origin-x) var(--theme-origin-y)); }
+  }
+  @supports not (view-transition-name: root) {
+    :where(body, .header, .footer, .topbar, .booking-wrap, .service-panel, .service-result, .car, .dialog) {
+      transition: background-color .25s, color .25s, border-color .25s;
+    }
+  }
+}
+
+:root[data-bs-theme="dark"] {
+  color-scheme: dark;
+  --paper: #141c18;
+  --ink: #edf3ea;
+  --muted: #b2c1b5;
+  --line: #44564a;
+  --green: #b1d89f;
+  --surface: #1b2720;
+  --surface-raised: #24342a;
+  --field-bg: #17221b;
+  --on-accent: #17271b;
+  --bs-body-bg: var(--paper);
+  --bs-body-color: var(--ink);
+  --bs-emphasis-color: var(--ink);
+  --bs-secondary-color: var(--muted);
+  --bs-border-color: var(--line);
+}
+[data-bs-theme="dark"] :is(.topbar, .footer) { background: #19251e; }
+[data-bs-theme="dark"] :is(.topbar, .footer-nav, .footer-contact-list, .car-label, .condition-number) { color: var(--muted); }
+[data-bs-theme="dark"] :is(.logo span, .hero h1 > span, .eyebrow, .booking-security, .benefit-list svg, .topbar-dot) { color: var(--green); }
+[data-bs-theme="dark"] .logo .logo-symbol { background: #304d39; color: var(--lime); }
+[data-bs-theme="dark"] :is(.car, .table-wrap, .dialog, .location-panel, .skip, .service-panel,
+  .service-result, .rental-row, .service-car, .service-table-wrap) {
+  background-color: var(--surface);
+  color: var(--ink);
+}
+[data-bs-theme="dark"] :is(.booking-wrap, .contact-info, .filters, .empty, .advantage__icon, .step i,
+  .car__photo, .map-frame, thead, .table thead, .compare-table tbody tr:nth-last-child(2)) {
+  background-color: var(--surface-raised);
+}
+[data-bs-theme="dark"] :is(.booking-estimate, .contact-item, .condition, .hero-secondary, .text-link) {
+  border-color: var(--line);
+}
+[data-bs-theme="dark"] .booking-estimate { color: var(--muted); }
+[data-bs-theme="dark"] :is(.hero__badge, .car .tag, .journey-caption, .about-photo > span, .map-external, .dialog__close) {
+  background: #19271ff0;
+  color: var(--ink);
+}
+[data-bs-theme="dark"] :is(.hero__badge > span, .journey-caption svg) { color: var(--green); }
+[data-bs-theme="dark"] :is(.cta-band, .calculator) { background: #244332; }
+[data-bs-theme="dark"] :is(.btn, .back-top),
+[data-bs-theme="dark"] .filter-btn[aria-pressed="true"] {
+  background-color: var(--green);
+  border-color: var(--green);
+  color: var(--on-accent);
+}
+[data-bs-theme="dark"] .btn:is(:hover, :focus-visible, :active),
+[data-bs-theme="dark"] .btn--lime { background-color: var(--lime); color: var(--on-accent); }
+[data-bs-theme="dark"] .btn--lime:active { color: var(--on-accent) !important; }
+[data-bs-theme="dark"] .btn--light { background: transparent; border-color: #69836c; color: var(--green); }
+[data-bs-theme="dark"] .btn--light:is(:hover, :focus-visible) { background: var(--surface-raised); color: var(--green); }
+[data-bs-theme="dark"] .btn--light:active { background: var(--surface-raised) !important; }
+[data-bs-theme="dark"] :is(.filter-btn, .navbar-toggler) { color: var(--ink); }
+[data-bs-theme="dark"] .filter-btn:not([aria-pressed="true"]) { background: var(--field-bg); }
+[data-bs-theme="dark"] :is(input, select, .form-control, .form-select) {
+  background-color: var(--field-bg);
+  border-color: #69806d;
+  color: var(--ink);
+}
+[data-bs-theme="dark"] input::placeholder { color: #a8b6ac; }
+[data-bs-theme="dark"] :is(.error, .service-error) { color: #ffada6; }
+[data-bs-theme="dark"] [aria-invalid="true"] { border-color: #f3968d; }
+[data-bs-theme="dark"] .form-status { background: #283e2d; color: #d9ebd3; }
+[data-bs-theme="dark"] .accordion {
+  --bs-accordion-border-color: var(--line);
+  --bs-accordion-active-color: var(--green);
+}
+[data-bs-theme="dark"] :is(.service-nav a.active, .service-nav a:hover, .catalog-tools a:hover,
+  .choice-chip:has(input:checked), .tariff-badge) {
+  background: #314834;
+  color: var(--green);
+}
+[data-bs-theme="dark"] .cal-day { background: #2c4433; color: #d5ebca; }
+[data-bs-theme="dark"] .cal-day.past { background: transparent; color: #94a399; }
+[data-bs-theme="dark"] .cal-day.busy { background: repeating-linear-gradient(135deg, #563c35 0 4px, #46322d 4px 8px); color: #ffd5c7; }
+[data-bs-theme="dark"] .cal-day.range { background: #405f44; color: #eef8e9; }
+[data-bs-theme="dark"] .cal-day[aria-pressed="true"],
+[data-bs-theme="dark"] .cal-day:not(:disabled):hover { background: var(--green); color: var(--on-accent); }
